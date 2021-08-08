@@ -3,6 +3,7 @@ package com.afli.presentation.user.controller;
 import com.afli.persistence.user.dao.AfliUserDao;
 import com.afli.persistence.user.entity.AfliUser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,7 +17,7 @@ public class AfliUserController {
     private final AfliUserDao afliUserDao;
 
     @Autowired
-    public AfliUserController(AfliUserDao afliUserDao) {
+    public AfliUserController(@Qualifier("afliJdbcUserDao") AfliUserDao afliUserDao) {
         this.afliUserDao = afliUserDao;
     }
 

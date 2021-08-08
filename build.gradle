@@ -2,6 +2,7 @@ plugins {
     id 'org.springframework.boot' version '2.2.3.RELEASE'
     id 'io.spring.dependency-management' version '1.0.8.RELEASE'
     id 'java'
+    id 'org.flywaydb.flyway' version '6.2.3'
 }
 
 sourceCompatibility = '11'
@@ -17,6 +18,13 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 
+    implementation 'org.flywaydb:flyway-core'
     runtimeOnly 'com.h2database:h2:1.4.200'
+}
 
+flyway {
+    url = 'jdbc:h2:mem:'
+    locations = [
+            'classpath:db/migration'
+    ]
 }
