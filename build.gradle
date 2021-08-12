@@ -20,6 +20,14 @@ dependencies {
 
     implementation 'org.flywaydb:flyway-core'
     runtimeOnly 'com.h2database:h2:1.4.200'
+
+    testCompile 'org.assertj:assertj-core'
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+    testImplementation('org.junit.jupiter:junit-jupiter:5.5.1')
+}
+
+test {
+    useJUnitPlatform()
 }
 
 flyway {
