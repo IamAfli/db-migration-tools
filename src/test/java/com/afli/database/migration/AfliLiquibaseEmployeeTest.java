@@ -11,7 +11,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import java.util.List;
 
 @DataJpaTest
-public class AfliFlywayEmployeeTest {
+public class AfliLiquibaseEmployeeTest {
 
     private static final String FIND_ALL_COMPANIES = "" +
             "SELECT name " +

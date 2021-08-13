@@ -2,7 +2,7 @@ plugins {
     id 'org.springframework.boot' version '2.2.3.RELEASE'
     id 'io.spring.dependency-management' version '1.0.8.RELEASE'
     id 'java'
-    id 'org.flywaydb.flyway' version '6.2.3'
+    id 'org.liquibase.gradle' version '2.0.4'
 }
 
 sourceCompatibility = '11'
@@ -18,7 +18,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 
-    implementation 'org.flywaydb:flyway-core'
+    implementation "org.liquibase:liquibase-core:3.6.3"
     runtimeOnly 'com.h2database:h2:1.4.200'
 
     testCompile 'org.assertj:assertj-core'
@@ -28,11 +28,4 @@ dependencies {
 
 test {
     useJUnitPlatform()
-}
-
-flyway {
-    url = 'jdbc:h2:mem:'
-    locations = [
-            'classpath:db/migration'
-    ]
 }
