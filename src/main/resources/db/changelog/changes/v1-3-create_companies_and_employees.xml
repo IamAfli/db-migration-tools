@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet author="il.gusevskiy@gmail.com" id="v1">
+        <createTable tableName="companies">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+        <rollback>
+            <dropTable tableName="companies"/>
+        </rollback>
+    </changeSet>
+    <changeSet author="il.gusevskiy@gmail.com" id="v2">
+        <sqlFile path="db/changelog/sql/v3.1-insert_companies.sql" relativeToChangelogFile="false"/>
+    </changeSet>
+    <changeSet author="il.gusevskiy@gmail.com" id="v3">
+        <createTable tableName="employees">
+            <column name="title" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="INT">
+                <constraints nullable="false" unique="true"
+                             foreignKeyName="fk_user" references="users(id)"/>
+            </column>
+            <column name="company_id" type="INT">
+                <constraints nullable="false"
+                             foreignKeyName="fk_company" references="companies(id)"/>
+            </column>
+        </createTable>
+        <rollback>
+            <dropTable tableName="companies"/>
+        </rollback>
+    </changeSet>
+    <changeSet author="il.gusevskiy@gmail.com" id="v4">
+        <sqlFile path="db/changelog/sql/v3.4-insert_employees.sql" relativeToChangelogFile="false"/>
+    </changeSet>
+</databaseChangeLog>
